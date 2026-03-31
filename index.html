@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- MANIFEST PER INSTALLAZIONE SU ANDROID -->
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#00e5ff">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="apple-touch-icon" href="icon-192.png">
-
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00e5ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
     <title>Flory Planner</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #d63384; 
+            --primary: #d63384;
             --primary-dark: #b8266d;
             --primary-light: #fce4ec;
             --secondary: #f06292;
@@ -26,12 +21,12 @@
             --shadow: 0 8px 30px rgba(214, 51, 132, 0.1);
         }
 
-        body { 
-            font-family: 'Segoe UI', system-ui, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text); 
-            margin: 0; 
-            padding-bottom: 95px; 
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding-bottom: 95px;
             overflow-y: auto;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
@@ -50,8 +45,8 @@
         }
 
         .student-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-        .student-card { 
-            background: white; border-radius: 20px; padding: 18px; box-shadow: var(--shadow); 
+        .student-card {
+            background: white; border-radius: 20px; padding: 18px; box-shadow: var(--shadow);
             border-top: 5px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;
         }
 
@@ -59,33 +54,33 @@
         .btn-backup { background: #f0f0f0; color: #666; font-size: 0.75rem; padding: 8px 12px; border-radius: 8px; border: none; cursor: pointer; }
 
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-        .cal-cell { 
-            min-height: 110px; 
-            border: 1px solid #f0f0f0; border-radius: 12px; padding: 5px; background: #fafafa; 
-            cursor: pointer; overflow: hidden; 
+        .cal-cell {
+            min-height: 110px;
+            border: 1px solid #f0f0f0; border-radius: 12px; padding: 5px; background: #fafafa;
+            cursor: pointer; overflow: hidden;
         }
         .cal-cell.today { border: 2px solid var(--primary); background: white; }
-        
-        .cal-lesson-tag { 
-            font-size: 0.58rem; 
-            background: var(--primary-light); 
-            color: var(--primary-dark); 
-            margin-bottom: 3px; 
-            padding: 2px 4px; 
-            border-radius: 4px; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
+
+        .cal-lesson-tag {
+            font-size: 0.58rem;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            margin-bottom: 3px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             border-left: 3px solid var(--primary);
             line-height: 1.2;
         }
 
-        .nav-bottom { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px); 
-            display: flex; justify-content: space-around; padding: 12px 0; 
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05); z-index: 1000; 
+        .nav-bottom {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-around; padding: 12px 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05); z-index: 1000;
         }
         .nav-item { text-align: center; color: #bbb; font-size: 0.75rem; flex: 1; cursor: pointer; }
         .nav-item.active { color: var(--primary); font-weight: bold; }
@@ -93,20 +88,169 @@
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 2000; }
         .modal-content { background: white; padding: 25px; border-radius: 25px; width: 90%; max-width: 450px; position: relative; }
-        
+
         input, select { width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #eee; background: #f9f9f9; box-sizing: border-box; font-size: 1rem; }
         .btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
         .btn-outline { background: #eee; color: #666; }
         .btn-danger { background: none; color: #ff4d4d; border: none; cursor: pointer; }
 
         .hidden { display: none; }
+
+        /* ===== STILE RESOCONTO ===== */
+        #resocontoModal .modal-content {
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 0;
+            border-radius: 20px;
+        }
+
+        .resoconto-sheet {
+            background: #fffef5;
+            border: 1px solid #e8e4d0;
+            border-radius: 20px;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .resoconto-header {
+            background: linear-gradient(135deg, #fffde0, #fff9c4);
+            padding: 20px 20px 15px;
+            border-bottom: 2px solid #f0e840;
+            text-align: center;
+        }
+
+        .resoconto-header .title-line {
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #222;
+            text-transform: uppercase;
+            line-height: 1.5;
+        }
+
+        .resoconto-header .subtitle-line {
+            display: inline-block;
+            background: #f9f740;
+            padding: 2px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333;
+            margin-top: 4px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .resoconto-body {
+            padding: 10px 0;
+        }
+
+        .resoconto-student {
+            border-bottom: 1.5px solid #e5e0c8;
+            padding: 14px 20px;
+        }
+
+        .resoconto-student:last-child {
+            border-bottom: none;
+        }
+
+        .resoconto-student-name {
+            display: inline-block;
+            background: #f9f740;
+            padding: 1px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #222;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .resoconto-student-school {
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: 4px;
+            font-style: italic;
+        }
+
+        .resoconto-collaboratore {
+            font-size: 0.82rem;
+            color: #555;
+            margin: 4px 0 8px 4px;
+            font-style: italic;
+            letter-spacing: 0.03em;
+        }
+
+        .resoconto-ore-box {
+            display: inline-block;
+            border: 2px solid #e8b4b8;
+            border-radius: 50px;
+            padding: 4px 20px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #c0392b;
+            background: white;
+            margin-left: 4px;
+        }
+
+        .resoconto-footer {
+            background: #fff9c4;
+            border-top: 2px solid #f0e840;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resoconto-totale-label {
+            display: inline-block;
+            background: #f9f740;
+            padding: 4px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .resoconto-totale-value {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #c0392b;
+            border: 2px solid #e8b4b8;
+            border-radius: 50px;
+            padding: 4px 18px;
+            background: white;
+        }
+
+        .resoconto-actions {
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .empty-resoconto {
+            text-align: center;
+            padding: 30px 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1 style="color: var(--primary); margin:0; font-size: 1.4rem;"><i class="fas fa-heart"></i> Flory Planner</h1>
-    <button class="btn" onclick="showModal('studentModal')"><i class="fas fa-user-plus"></i></button>
+    <div style="display:flex; gap:8px">
+        <button class="btn btn-outline" onclick="openImpostazioni()" style="padding:10px 14px;"><i class="fas fa-cog"></i></button>
+        <button class="btn" onclick="showModal('studentModal')"><i class="fas fa-user-plus"></i></button>
+    </div>
 </header>
 
 <div class="container">
@@ -150,50 +294,162 @@
 </div>
 
 <nav class="nav-bottom">
-    <div class="nav-item active" id="navDash" onclick="switchTab('dashboard')"><i class="fas fa-th-large"></i>Alunni</div>
+    <div class="nav-item active" id="navDashboard" onclick="switchTab('dashboard')"><i class="fas fa-th-large"></i>Alunni</div>
     <div class="nav-item" id="navAgenda" onclick="switchTab('agenda')"><i class="fas fa-clock"></i>Agenda</div>
-    <div class="nav-item" id="navCal" onclick="switchTab('calendar')"><i class="fas fa-calendar-alt"></i>Mese</div>
+    <div class="nav-item" id="navCalendar" onclick="switchTab('calendar')"><i class="fas fa-calendar-alt"></i>Mese</div>
+    <div class="nav-item" id="navResoconto" onclick="openResoconto()"><i class="fas fa-file-alt"></i>Resoconto</div>
 </nav>
 
+<!-- Modal setup operatrice -->
+<div id="operatriceModal" class="modal">
+    <div class="modal-content" style="text-align:center;">
+        <div style="font-size:2.5rem; margin-bottom:10px;">👋</div>
+        <h3 style="margin:0 0 8px; color:var(--primary)">Benvenuta!</h3>
+        <p style="color:#888; font-size:0.9rem; margin:0 0 16px">Inserisci il tuo nome e cognome.<br>Apparirà nel resoconto mensile.</p>
+        <input type="text" id="operatriceNome" placeholder="Es. Lo Magno Floriana" style="text-align:center; font-size:1rem;">
+        <button class="btn" style="width:100%; margin-top:8px" onclick="saveOperatrice()"><i class="fas fa-check"></i> Inizia</button>
+    </div>
+</div>
+
+<!-- Modal impostazioni operatrice -->
+<div id="impostazioniModal" class="modal">
+    <div class="modal-content">
+        <h3>Impostazioni</h3>
+        <label style="font-size:0.85rem; color:#888; margin-left:4px">Nome operatrice (appare nel resoconto)</label>
+        <input type="text" id="impostazioniNome" placeholder="Nome e Cognome">
+        <div style="display:flex; gap:10px; margin-top:8px">
+            <button class="btn btn-outline" style="flex:1" onclick="hideModal('impostazioniModal')">Annulla</button>
+            <button class="btn" style="flex:1" onclick="saveImpostazioni()"><i class="fas fa-save"></i> Salva</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal alunno -->
 <div id="studentModal" class="modal"><div class="modal-content"><h3>Nuovo Alunno</h3><input type="text" id="newStudentName" placeholder="Nome"><input type="text" id="newStudentSchool" placeholder="Scuola"><div style="display:flex; gap:10px;"><button class="btn btn-outline" style="flex:1" onclick="hideModal('studentModal')">Annulla</button><button class="btn" style="flex:1" onclick="saveStudent()">Salva</button></div></div></div>
+
+<!-- Modal ore -->
 <div id="hourModal" class="modal"><div class="modal-content"><h3>Nuova Lezione</h3><select id="hourStudentSelect"></select><input type="date" id="hourDate"><div style="display:flex; gap:10px"><input type="time" id="hourStart" value="08:00"><input type="time" id="hourEnd" value="10:00"></div><button class="btn" style="width:100%" onclick="saveHours()">Salva</button></div></div>
+
+<!-- Modal dettaglio giorno -->
 <div id="dayDetailModal" class="modal"><div class="modal-content"><span onclick="hideModal('dayDetailModal')" style="float:right; cursor:pointer">&times;</span><h3 id="detailDateTitle"></h3><div id="dayLessonsList"></div><button class="btn" style="width:100%; margin-top:15px" onclick="openAddSessionFromCal()">+ Aggiungi</button></div></div>
 
+<!-- Modal Resoconto -->
+<div id="resocontoModal" class="modal">
+    <div class="modal-content">
+        <div class="resoconto-sheet">
+            <div class="resoconto-header">
+                <div class="title-line" id="resocontoTitleLine">RENDICONTAZIONE MESE GENNAIO 2026</div>
+                <div class="subtitle-line" id="resocontoAssistenteLine">ASSISTENTE LO MAGNO FLORIANA</div>
+            </div>
+            <div class="resoconto-body" id="resocontoBody"></div>
+            <div class="resoconto-footer">
+                <span class="resoconto-totale-label">TOT. ORE</span>
+                <span class="resoconto-totale-value" id="resocontoTotale">0</span>
+            </div>
+        </div>
+        <div class="resoconto-actions">
+            <button class="btn btn-outline" style="flex:1" onclick="hideModal('resocontoModal')"><i class="fas fa-times"></i> Chiudi</button>
+            <button class="btn" style="flex:1" onclick="copyResoconto()"><i class="fas fa-copy"></i> Copia testo</button>
+        </div>
+    </div>
+</div>
+
 <script>
-    let students = JSON.parse(localStorage.getItem('pink_v11')) || [];
+    // ===== STATO GLOBALE =====
+    let appData = JSON.parse(localStorage.getItem('pink_v11')) || { operatrice: null, students: [] };
+    // Compatibilità con vecchio formato (array puro)
+    if (Array.isArray(appData)) appData = { operatrice: null, students: appData };
+    let students = appData.students;
     let viewDate = new Date();
     let selectedCalDate = null;
-    const monthNames = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+    const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 
-    // Persistenza dati su Android
+    // ===== PERSISTENZA =====
     async function enablePersistentStorage() {
-        if ('storage' in navigator && 'persist' in navigator.storage) {
-            await navigator.storage.persist();
-        }
+        if ('storage' in navigator && 'persist' in navigator.storage) await navigator.storage.persist();
     }
 
+    function saveAll() {
+        appData.students = students;
+        localStorage.setItem('pink_v11', JSON.stringify(appData));
+    }
+
+    // ===== INIT =====
     function init() {
         document.getElementById('agendaDateSelector').valueAsDate = new Date();
         enablePersistentStorage();
+        // Chiedi nome operatrice se non presente
+        if (!appData.operatrice) {
+            document.getElementById('operatriceModal').style.display = 'flex';
+        }
         refreshAll();
         renderGlobalCalendar();
     }
 
+    // ===== OPERATRICE =====
+    function saveOperatrice() {
+        const val = document.getElementById('operatriceNome').value.trim();
+        if (!val) { alert('Inserisci il tuo nome'); return; }
+        appData.operatrice = val;
+        saveAll();
+        hideModal('operatriceModal');
+    }
+
+    function openImpostazioni() {
+        document.getElementById('impostazioniNome').value = appData.operatrice || '';
+        showModal('impostazioniModal');
+    }
+
+    function saveImpostazioni() {
+        const val = document.getElementById('impostazioniNome').value.trim();
+        if (!val) { alert('Inserisci il tuo nome'); return; }
+        appData.operatrice = val;
+        saveAll();
+        hideModal('impostazioniModal');
+        alert('Nome operatrice aggiornato!');
+    }
+
+    // ===== EXPORT CON DATA =====
+    function getExportFilename() {
+        const now = new Date();
+        const d = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+        return `flory_planner_${d}.json`;
+    }
+
+    function exportData() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+        const dl = document.createElement('a');
+        dl.setAttribute("href", dataStr);
+        dl.setAttribute("download", getExportFilename());
+        dl.click();
+    }
+
+    // Esporta suggerendo il backup dopo ogni modifica dati
+    function suggestExport(msg) {
+        if (confirm(`✅ ${msg}\n\n💾 Vuoi esportare il backup ora?\n(Consigliato: Android può cancellare i dati)`) ) {
+            exportData();
+        }
+    }
+
+    // ===== TABS =====
     function switchTab(tab) {
-        document.getElementById('secDashboard').classList.add('hidden');
-        document.getElementById('secAgenda').classList.add('hidden');
-        document.getElementById('secCalendar').classList.add('hidden');
-        const targetId = 'sec' + tab.charAt(0).toUpperCase() + tab.slice(1);
-        document.getElementById(targetId).classList.remove('hidden');
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        document.getElementById('nav' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
-        if(tab === 'calendar') setTimeout(() => { renderGlobalCalendar(); }, 10);
-        if(tab === 'agenda') renderAgenda();
+        ['Dashboard', 'Agenda', 'Calendar'].forEach(t => {
+            document.getElementById('sec' + t).classList.add('hidden');
+            const nav = document.getElementById('nav' + t);
+            if (nav) nav.classList.remove('active');
+        });
+        document.getElementById('navResoconto').classList.remove('active');
+        const capTab = tab.charAt(0).toUpperCase() + tab.slice(1);
+        document.getElementById('sec' + capTab).classList.remove('hidden');
+        const navEl = document.getElementById('nav' + capTab);
+        if (navEl) navEl.classList.add('active');
+        if (tab === 'calendar') setTimeout(() => { renderGlobalCalendar(); }, 10);
+        if (tab === 'agenda') renderAgenda();
         refreshAll();
     }
 
     function refreshAll() {
-        localStorage.setItem('pink_v11', JSON.stringify(students));
+        saveAll();
         renderGlobalStats();
         renderDashboard();
     }
@@ -203,7 +459,7 @@
         let total = 0;
         students.forEach(s => s.sessions.forEach(sess => {
             const d = new Date(sess.date);
-            if(d.getMonth() === m && d.getFullYear() === y) total += sess.duration;
+            if (d.getMonth() === m && d.getFullYear() === y) total += sess.duration;
         }));
         document.getElementById('displayTotalHours').innerText = total.toFixed(1) + " h";
         document.getElementById('displayMonthName').innerText = monthNames[m] + " " + y;
@@ -234,48 +490,185 @@
         const y = viewDate.getFullYear(), m = viewDate.getMonth();
         document.getElementById('calTitle').innerText = `${monthNames[m]} ${y}`;
         grid.innerHTML = '';
-        ["L", "M", "M", "G", "V", "S", "D"].forEach(d => grid.innerHTML += `<div style="text-align:center; font-weight:bold; font-size:0.7rem; color:var(--secondary)">${d}</div>`);
+        ["L","M","M","G","V","S","D"].forEach(d => grid.innerHTML += `<div style="text-align:center; font-weight:bold; font-size:0.7rem; color:var(--secondary)">${d}</div>`);
         const startOffset = (new Date(y, m, 1).getDay() || 7) - 1;
-        for(let i=0; i<startOffset; i++) grid.innerHTML += `<div></div>`;
-        
-        for(let d=1; d<=new Date(y, m + 1, 0).getDate(); d++) {
-            const dateStr = `${y}-${String(m+1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        for (let i = 0; i < startOffset; i++) grid.innerHTML += `<div></div>`;
+        for (let d = 1; d <= new Date(y, m + 1, 0).getDate(); d++) {
+            const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
             let daily = [];
-            
-            students.forEach(st => st.sessions.forEach(se => { 
-                if(se.date === dateStr) daily.push({name: st.name, school: st.school || '', ...se});
+            students.forEach(st => st.sessions.forEach(se => {
+                if (se.date === dateStr) daily.push({ name: st.name, school: st.school || '', ...se });
             }));
-            
-            daily.sort((a,b)=>a.start.localeCompare(b.start));
-            
+            daily.sort((a, b) => a.start.localeCompare(b.start));
             const cell = document.createElement('div');
             cell.className = `cal-cell ${new Date().toISOString().split('T')[0] === dateStr ? 'today' : ''}`;
             cell.onclick = () => openDayDetail(dateStr, daily);
-            
             let htmlContent = `<div style="font-weight:bold; font-size:0.75rem">${d}</div>`;
             daily.forEach(l => {
                 const schoolTag = l.school ? ` (${l.school})` : '';
                 htmlContent += `<div class="cal-lesson-tag">${l.start}-${l.end} ${l.name}${schoolTag}</div>`;
             });
-            
             cell.innerHTML = htmlContent;
             grid.appendChild(cell);
         }
     }
 
-    // Funzioni originali
+    // ===== RESOCONTO =====
+    function openResoconto() {
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        document.getElementById('navResoconto').classList.add('active');
+        const m = viewDate.getMonth(), y = viewDate.getFullYear();
+        const monthLabel = monthNames[m].toUpperCase() + ' ' + y;
+        document.getElementById('resocontoTitleLine').innerText = `RENDICONTAZIONE MESE ${monthLabel}`;
+        const nomeOp = appData.operatrice ? `ASSISTENTE ${appData.operatrice.toUpperCase()}` : 'ASSISTENTE —';
+        document.getElementById('resocontoAssistenteLine').innerText = nomeOp;
+        const body = document.getElementById('resocontoBody');
+        body.innerHTML = '';
+        let grandTotal = 0, hasData = false;
+        students.forEach(student => {
+            const totalHours = student.sessions
+                .filter(s => { const d = new Date(s.date); return d.getMonth() === m && d.getFullYear() === y; })
+                .reduce((acc, s) => acc + s.duration, 0);
+            if (totalHours === 0) return;
+            hasData = true;
+            grandTotal += totalHours;
+            body.innerHTML += `
+                <div class="resoconto-student">
+                    <div>
+                        <span class="resoconto-student-name">${student.name}</span>
+                        ${student.school ? `<span class="resoconto-student-school">/ ${student.school}</span>` : ''}
+                    </div>
+                    <div class="resoconto-ore-box">Tot. ore ${formatOre(totalHours)}</div>
+                </div>`;
+        });
+        if (!hasData) {
+            body.innerHTML = `<div class="empty-resoconto"><i class="fas fa-calendar-times" style="font-size:2rem; margin-bottom:10px; display:block; opacity:0.3"></i>Nessuna ora registrata per ${monthNames[m]} ${y}</div>`;
+        }
+        document.getElementById('resocontoTotale').innerText = formatOre(grandTotal);
+        showModal('resocontoModal');
+    }
+
+    function formatOre(h) {
+        const intPart = Math.floor(h);
+        const dec = h - intPart;
+        if (dec === 0) return String(intPart);
+        if (Math.abs(dec - 0.5) < 0.01) return intPart > 0 ? `${intPart} ½` : '½';
+        if (Math.abs(dec - 0.25) < 0.01) return intPart > 0 ? `${intPart} ¼` : '¼';
+        if (Math.abs(dec - 0.75) < 0.01) return intPart > 0 ? `${intPart} ¾` : '¾';
+        return h.toFixed(1).replace('.', ',');
+    }
+
+    function copyResoconto() {
+        const m = viewDate.getMonth(), y = viewDate.getFullYear();
+        const monthLabel = monthNames[m].toUpperCase() + ' ' + y;
+        const nomeOp = appData.operatrice ? `ASSISTENTE ${appData.operatrice.toUpperCase()}` : 'ASSISTENTE —';
+        let text = `RENDICONTAZIONE MESE ${monthLabel}\n${nomeOp}\n\n`;
+        let grandTotal = 0;
+        students.forEach(student => {
+            const totalHours = student.sessions
+                .filter(s => { const d = new Date(s.date); return d.getMonth() === m && d.getFullYear() === y; })
+                .reduce((acc, s) => acc + s.duration, 0);
+            if (totalHours === 0) return;
+            grandTotal += totalHours;
+            const school = student.school ? ` / ${student.school}` : '';
+            text += `• ${student.name}${school}\n  Tot. ore ${formatOre(totalHours)}\n\n`;
+        });
+        text += `TOT. ORE ${formatOre(grandTotal)}`;
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Testo copiato negli appunti!');
+        }).catch(() => {
+            prompt('Copia questo testo:', text);
+        });
+    }
+
+    // ===== CRUD con suggerimento export =====
     function changeMonth(dir) { viewDate.setMonth(viewDate.getMonth() + dir); renderGlobalCalendar(); refreshAll(); }
-    function saveStudent() { const n = document.getElementById('newStudentName'), s = document.getElementById('newStudentSchool'); if(!n.value) return; students.push({ id: Date.now(), name: n.value, school: s.value, sessions: [] }); n.value=''; s.value=''; hideModal('studentModal'); refreshAll(); }
-    function saveHours() { const id = parseInt(document.getElementById('hourStudentSelect').value), d = document.getElementById('hourDate').value, s = document.getElementById('hourStart').value, e = document.getElementById('hourEnd').value; const dur = (new Date(`2000-01-01T${e}`) - new Date(`2000-01-01T${s}`)) / 3600000; if(dur <= 0) return alert("Orario non valido"); students.find(x => x.id === id).sessions.push({ id: Date.now(), date: d, start: s, end: e, duration: dur }); hideModal('hourModal'); refreshAll(); renderGlobalCalendar(); }
-    function deleteStudent(id) { if(confirm("Eliminare alunno?")) { students = students.filter(s => s.id !== id); refreshAll(); renderGlobalCalendar(); } }
-    function showModal(id, stId = null) { document.getElementById(id).style.display = 'flex'; if(id === 'hourModal') { document.getElementById('hourStudentSelect').innerHTML = students.map(s => `<option value="${s.id}" ${s.id==stId?'selected':''}>${s.name}</option>`).join(''); document.getElementById('hourDate').value = selectedCalDate || new Date().toISOString().split('T')[0]; } }
+
+    function saveStudent() {
+        const n = document.getElementById('newStudentName'), s = document.getElementById('newStudentSchool');
+        if (!n.value) return;
+        students.push({ id: Date.now(), name: n.value, school: s.value, sessions: [] });
+        n.value = ''; s.value = '';
+        hideModal('studentModal');
+        refreshAll();
+        suggestExport(`Alunno "${students[students.length-1].name}" aggiunto!`);
+    }
+
+    function saveHours() {
+        const id = parseInt(document.getElementById('hourStudentSelect').value);
+        const d = document.getElementById('hourDate').value;
+        const s = document.getElementById('hourStart').value;
+        const e = document.getElementById('hourEnd').value;
+        const dur = (new Date(`2000-01-01T${e}`) - new Date(`2000-01-01T${s}`)) / 3600000;
+        if (dur <= 0) return alert("Orario non valido");
+        const st = students.find(x => x.id === id);
+        st.sessions.push({ id: Date.now(), date: d, start: s, end: e, duration: dur });
+        hideModal('hourModal');
+        refreshAll();
+        renderGlobalCalendar();
+        suggestExport(`Ore aggiunte per ${st.name}!`);
+    }
+
+    function deleteStudent(id) {
+        if (confirm("Eliminare alunno?")) {
+            students = students.filter(s => s.id !== id);
+            refreshAll();
+            renderGlobalCalendar();
+            suggestExport("Alunno eliminato.");
+        }
+    }
+
+    function deleteSession(id) {
+        if (confirm("Eliminare?")) {
+            students.forEach(s => s.sessions = s.sessions.filter(x => x.id !== id));
+            hideModal('dayDetailModal');
+            refreshAll();
+            renderGlobalCalendar();
+            suggestExport("Sessione eliminata.");
+        }
+    }
+
+    function showModal(id, stId = null) {
+        document.getElementById(id).style.display = 'flex';
+        if (id === 'hourModal') {
+            document.getElementById('hourStudentSelect').innerHTML = students.map(s => `<option value="${s.id}" ${s.id == stId ? 'selected' : ''}>${s.name}</option>`).join('');
+            document.getElementById('hourDate').value = selectedCalDate || new Date().toISOString().split('T')[0];
+        }
+    }
     function hideModal(id) { document.getElementById(id).style.display = 'none'; }
     function openAddSessionFromCal() { hideModal('dayDetailModal'); showModal('hourModal'); }
-    function openDayDetail(date, lessons) { selectedCalDate = date; document.getElementById('detailDateTitle').innerText = new Date(date).toLocaleDateString('it-IT', { day:'numeric', month:'long' }); const list = document.getElementById('dayLessonsList'); list.innerHTML = lessons.length ? lessons.map(l => `<div style="padding:8px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center"><span><b>${l.start}-${l.end}</b> ${l.name}</span><button class="btn-danger" onclick="deleteSession(${l.id})"><i class="fas fa-trash"></i></button></div>`).join('') : "Nessuna lezione"; showModal('dayDetailModal'); }
-    function deleteSession(id) { if(confirm("Eliminare?")) { students.forEach(s => s.sessions = s.sessions.filter(x => x.id !== id)); hideModal('dayDetailModal'); refreshAll(); renderGlobalCalendar(); } }
-    function renderAgenda() { const list = document.getElementById('agendaList'), d = document.getElementById('agendaDateSelector').value; let f = []; students.forEach(st => st.sessions.forEach(se => { if(se.date === d) f.push({...se, name: st.name}); })); list.innerHTML = f.length ? f.sort((a,b)=>a.start.localeCompare(b.start)).map(x => `<div style="padding:10px 0; border-bottom:1px solid #eee"><b>${x.start}-${x.end}</b> ${x.name}</div>`).join('') : "Libero"; }
-    function exportData() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(students)); const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", "backup_planner.json"); dl.click(); }
-    function importData(e) { const reader = new FileReader(); reader.onload = (ev) => { if(confirm("Sovrascrivere?")) { students = JSON.parse(ev.target.result); refreshAll(); renderGlobalCalendar(); } }; reader.readAsText(e.target.files[0]); }
+    function openDayDetail(date, lessons) {
+        selectedCalDate = date;
+        document.getElementById('detailDateTitle').innerText = new Date(date).toLocaleDateString('it-IT', { day: 'numeric', month: 'long' });
+        const list = document.getElementById('dayLessonsList');
+        list.innerHTML = lessons.length ? lessons.map(l => `<div style="padding:8px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center"><span><b>${l.start}-${l.end}</b> ${l.name}</span><button class="btn-danger" onclick="deleteSession(${l.id})"><i class="fas fa-trash"></i></button></div>`).join('') : "Nessuna lezione";
+        showModal('dayDetailModal');
+    }
+    function renderAgenda() {
+        const list = document.getElementById('agendaList'), d = document.getElementById('agendaDateSelector').value;
+        let f = [];
+        students.forEach(st => st.sessions.forEach(se => { if (se.date === d) f.push({ ...se, name: st.name }); }));
+        list.innerHTML = f.length ? f.sort((a,b)=>a.start.localeCompare(b.start)).map(x => `<div style="padding:10px 0; border-bottom:1px solid #eee"><b>${x.start}-${x.end}</b> ${x.name}</div>`).join('') : "Libero";
+    }
+    function importData(e) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            if (confirm("Sovrascrivere tutti i dati?")) {
+                const parsed = JSON.parse(ev.target.result);
+                // Supporta sia vecchio formato (array) che nuovo (oggetto con operatrice)
+                if (Array.isArray(parsed)) {
+                    appData = { operatrice: appData.operatrice, students: parsed };
+                } else {
+                    appData = parsed;
+                }
+                students = appData.students;
+                saveAll();
+                refreshAll();
+                renderGlobalCalendar();
+            }
+        };
+        reader.readAsText(e.target.files[0]);
+    }
 
     init();
 </script>
