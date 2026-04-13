@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Flory Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #d63384;
+    --pink-dark: #a0245e;
+    --pink-light: #fce4ec;
+    --pink-mid: #f48fb1;
+    --cream: #fffcfd;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #f0d6e4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #d63384 0%, #f06292 50%, #f48fb1 100%);
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero .subtitle {
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero .date {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ===== LANG TOGGLE ===== */
+  .lang-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(214,51,132,0.08);
+  }
+
+  .lang-btn {
+    background: none;
+    border: 2px solid var(--border);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: white;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .lang-section { display: none; }
+  .lang-section.visible { display: block; }
+
+  /* ===== SECTION ===== */
+  .section {
+    margin-bottom: 48px;
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(214,51,132,0.06);
+    border-left: 4px solid var(--pink);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.10s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.20s; }
+  .section:nth-child(6) { animation-delay: 0.25s; }
+
+  .section-icon {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--pink-dark);
+    margin-bottom: 14px;
+  }
+
+  .section p {
+    color: #444;
+    margin-bottom: 12px;
+    font-size: 0.97rem;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ===== DISCLAIMER BOX ===== */
+  .disclaimer {
+    background: linear-gradient(135deg, #fff3f8, #fce4ec);
+    border: 2px solid var(--pink-mid);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .disclaimer::before {
+    content: '⚠️';
+    position: absolute;
+    top: -10px; right: 20px;
+    font-size: 4rem;
+    opacity: 0.12;
+  }
+
+  .disclaimer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--pink-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .disclaimer p {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+
+  .disclaimer p:last-child { margin-bottom: 0; }
+
+  .disclaimer strong {
+    color: var(--pink-dark);
+  }
+
+  /* ===== GREEN BOX ===== */
+  .safe-box {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 2px solid #86efac;
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+
+  .safe-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #166534;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .safe-box p {
+    color: #166534;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+
+  /* ===== LIST ===== */
+  ul.check {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+  }
+
+  ul.check li {
+    padding: 6px 0 6px 28px;
+    position: relative;
+    color: #444;
+    font-size: 0.95rem;
+  }
+
+  ul.check li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-weight: 700;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    text-align: center;
+    padding: 40px 24px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(214,51,132,0.06);
+    margin-bottom: 48px;
+  }
+
+  .contact p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  footer span {
+    color: var(--pink);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-icon">♥</span>
+  <h1>Flory Planner</h1>
+  <p class="subtitle">Privacy Policy &amp; Disclaimer</p>
+  <span class="date">Effective / In vigore: April 2026</span>
+</div>
+
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('it')">🇮🇹 Italiano</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+</div>
+
+<div class="content">
+
+  <!-- ============================================================ -->
+  <!--  ITALIANO                                                     -->
+  <!-- ============================================================ -->
+  <div class="lang-section visible" id="lang-it">
+
+    <div class="section">
+      <span class="section-icon">📱</span>
+      <h2>Cos'è Flory Planner</h2>
+      <p>Flory Planner è un'applicazione Android personale progettata per assistenti scolastici e operatori educativi. Permette di registrare le ore di lavoro con gli alunni, visualizzarle su un calendario mensile, consultare un'agenda giornaliera e generare un resoconto mensile delle ore svolte.</p>
+      <p>L'app è pensata per uso individuale e non prevede account, registrazioni o servizi online.</p>
+    </div>
+
+    <div class="safe-box">
+      <h2>✅ Nessun dato viene raccolto</h2>
+      <p>Flory Planner <strong>non raccoglie, non trasmette e non condivide nessun dato personale</strong> con terze parti, sviluppatori o server esterni.</p>
+      <ul class="check">
+        <li>Nessuna connessione a internet richiesta</li>
+        <li>Nessun account o registrazione necessaria</li>
+        <li>Nessun dato inviato a server esterni</li>
+        <li>Nessuna analisi, tracking o pubblicità</li>
+        <li>Nessuna richiesta di permessi sensibili</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">💾</span>
+      <h2>Come vengono salvati i dati</h2>
+      <p>Tutti i dati inseriti (nomi degli alunni, scuole, sessioni, orari) vengono salvati <strong>esclusivamente sul dispositivo dell'utente</strong>, nella memoria privata dell'app tramite la tecnologia <em>localStorage</em> del browser interno (WebView).</p>
+      <p>I dati non lasciano mai il dispositivo, a meno che l'utente non esporti manualmente un file di backup tramite la funzione "Esporta" dell'app.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">📤</span>
+      <h2>Funzione di Export/Import</h2>
+      <p>L'app permette di esportare i dati come file JSON e di importarli in seguito. Questo file viene creato sul dispositivo e condiviso tramite le app di condivisione di Android (es. email, WhatsApp, Google Drive) a esclusiva scelta dell'utente.</p>
+      <p>Lo sviluppatore non ha accesso a questi file in nessun momento.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">👶</span>
+      <h2>Minori</h2>
+      <p>L'app è destinata a operatori adulti. I nomi degli alunni inseriti sono dati gestiti direttamente dall'utente sul proprio dispositivo e non vengono mai trasmessi o elaborati da terzi. Lo sviluppatore non ha accesso a tali informazioni.</p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <h2>⚠️ Disclaimer — Limitazione di Responsabilità</h2>
+      <p>Flory Planner è fornita <strong>"così com'è"</strong>, senza garanzie di alcun tipo, esplicite o implicite.</p>
+      <p><strong>Lo sviluppatore non si assume alcuna responsabilità</strong> per la perdita di dati causata da:</p>
+      <ul class="check" style="margin-bottom:12px">
+        <li>Disinstallazione dell'app</li>
+        <li>Cancellazione della cache o dei dati dell'app dalle impostazioni Android</li>
+        <li>Reset del dispositivo o cambio di smartphone</li>
+        <li>Aggiornamenti del sistema operativo Android</li>
+        <li>Malfunzionamenti del dispositivo</li>
+        <li>Qualsiasi altro evento tecnico imprevisto</li>
+      </ul>
+      <p><strong>È responsabilità esclusiva dell'utente</strong> effettuare regolarmente backup dei propri dati tramite la funzione "Esporta" dell'app e conservare il file in un luogo sicuro (cloud, email, ecc.).</p>
+      <p>L'uso dell'app implica l'accettazione di questi termini.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">🔄</span>
+      <h2>Modifiche a questa Privacy Policy</h2>
+      <p>Eventuali aggiornamenti a questa policy saranno pubblicati su questa pagina. La data di entrata in vigore è indicata in cima al documento. L'uso continuato dell'app dopo modifiche costituisce accettazione delle stesse.</p>
+    </div>
+
+    <div class="contact">
+      <span style="font-size:2rem">✉️</span>
+      <p><strong>Contatti</strong></p>
+      <p>Per domande su questa Privacy Policy, contattare lo sviluppatore tramite la pagina del Play Store.</p>
+    </div>
+
+  </div><!-- fine lang-it -->
+
+
+  <!-- ============================================================ -->
+  <!--  ENGLISH                                                      -->
+  <!-- ============================================================ -->
+  <div class="lang-section" id="lang-en">
+
+    <div class="section">
+      <span class="section-icon">📱</span>
+      <h2>What is Flory Planner</h2>
+      <p>Flory Planner is a personal Android application designed for school assistants and educational support workers. It allows users to log working hours with students, view them on a monthly calendar, consult a daily agenda, and generate a monthly hours report.</p>
+      <p>The app is designed for individual use and does not require any account, registration, or online services.</p>
+    </div>
+
+    <div class="safe-box">
+      <h2>✅ No data is collected</h2>
+      <p>Flory Planner <strong>does not collect, transmit, or share any personal data</strong> with third parties, developers, or external servers.</p>
+      <ul class="check">
+        <li>No internet connection required</li>
+        <li>No account or registration needed</li>
+        <li>No data sent to external servers</li>
+        <li>No analytics, tracking, or advertising</li>
+        <li>No sensitive permissions requested</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">💾</span>
+      <h2>How data is stored</h2>
+      <p>All data entered (student names, schools, sessions, times) is saved <strong>exclusively on the user's device</strong>, in the app's private storage using the <em>localStorage</em> technology of the built-in browser (WebView).</p>
+      <p>Data never leaves the device unless the user manually exports a backup file through the app's "Export" feature.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">📤</span>
+      <h2>Export / Import Feature</h2>
+      <p>The app allows exporting data as a JSON file and importing it later. This file is created on the device and shared through Android's sharing system (e.g., email, WhatsApp, Google Drive) entirely at the user's discretion.</p>
+      <p>The developer has no access to these files at any time.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">👶</span>
+      <h2>Minors</h2>
+      <p>The app is intended for adult operators. Student names entered are data managed directly by the user on their own device and are never transmitted or processed by third parties. The developer has no access to such information.</p>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer">
+      <h2>⚠️ Disclaimer — Limitation of Liability</h2>
+      <p>Flory Planner is provided <strong>"as is"</strong>, without warranties of any kind, express or implied.</p>
+      <p><strong>The developer assumes no responsibility</strong> for data loss caused by:</p>
+      <ul class="check" style="margin-bottom:12px">
+        <li>Uninstalling the app</li>
+        <li>Clearing the app's cache or data from Android settings</li>
+        <li>Device reset or switching to a new smartphone</li>
+        <li>Android operating system updates</li>
+        <li>Device malfunctions</li>
+        <li>Any other unforeseen technical event</li>
+      </ul>
+      <p><strong>It is the user's sole responsibility</strong> to regularly back up their data using the app's "Export" feature and to store the backup file in a safe location (cloud, email, etc.).</p>
+      <p>Using the app implies acceptance of these terms.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-icon">🔄</span>
+      <h2>Changes to this Privacy Policy</h2>
+      <p>Any updates to this policy will be published on this page. The effective date is shown at the top of this document. Continued use of the app after changes constitutes acceptance of those changes.</p>
+    </div>
+
+    <div class="contact">
+      <span style="font-size:2rem">✉️</span>
+      <p><strong>Contact</strong></p>
+      <p>For questions about this Privacy Policy, please contact the developer through the Play Store listing page.</p>
+    </div>
+
+  </div><!-- end lang-en -->
+
+</div><!-- end content -->
+
+<footer>
+  <p>♥ Flory Planner &nbsp;·&nbsp; <span>Privacy Policy</span> &nbsp;·&nbsp; April 2026</p>
+  <p style="margin-top:6px">Made with love for educational support workers.</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('visible'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('visible');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
